@@ -4,10 +4,6 @@ export interface RfqTicket {
   side: string,
   client: string,
   sales: string,
-  legNumber: number,
-  legs: [
-    {
-      size: number,
-    }
-  ]
+  size: number,
+  price: number
 }

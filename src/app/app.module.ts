@@ -6,15 +6,17 @@ import { environment } from '../environments/environment';
 
 import { RfqTicketService } from './services/rfq-ticket.service';
 import { AppComponent } from './app.component';
+import { BondComponent } from './bond/bond.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    BondComponent
   ],
   imports: [
     BrowserModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireDatabseModule
+    AngularFireDatabaseModule
   ],
   providers: [RfqTicketService],
   bootstrap: [AppComponent]

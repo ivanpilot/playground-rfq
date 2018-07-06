@@ -4,12 +4,14 @@
 
 export const environment = {
   production: false,
-  apiKey: "AIzaSyAdq_cc5dlgr2VGiBLQ3ght5wHvHigNCZE",
-  authDomain: "playground-rfq.firebaseapp.com",
-  databaseURL: "https://playground-rfq.firebaseio.com",
-  projectId: "playground-rfq",
-  storageBucket: "playground-rfq.appspot.com",
-  messagingSenderId: "514298147662"
+  firebase: {
+    apiKey: "AIzaSyAdq_cc5dlgr2VGiBLQ3ght5wHvHigNCZE",
+    authDomain: "playground-rfq.firebaseapp.com",
+    databaseURL: "https://playground-rfq.firebaseio.com",
+    projectId: "playground-rfq",
+    storageBucket: "playground-rfq.appspot.com",
+    messagingSenderId: "514298147662"
+  }
 };
 
 /*
