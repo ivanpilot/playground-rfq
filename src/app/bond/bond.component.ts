@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { RfqTicketService } from '../services/rfq-ticket.service';
+import { RfqTicket } from '../shared/model/rfq-ticket';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'bond',
@@ -7,9 +10,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BondComponent implements OnInit {
 
-  constructor() { }
+  rfqTickets: RfqTicket[] = []
+  constructor(private rfqTicketService: RfqTicketService){}
 
-  ngOnInit() {
+  ngOnInit(){
+    this.rfqTicketService.get()
+    .subscribe((data) => {
+      console.log('this is my log', data)
+      this.rfqTickets = data
+    })
   }
 
 }
