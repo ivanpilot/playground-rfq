@@ -1,21 +1,26 @@
-<!-- <div id="bond-wrapper"
->
-  <p>Sales person is: {{(rfqTickets$ | async)}}</p>
-  <p>client is: </p>
-  <h2>Product: </h2>
-  <span><h3>BUY :</h3></span><span><h2> mm for £</h2></span>
-  <div id="toggler">
-    <button>Increase</button>
-    <button>Decrease</button>
+<div class="row">
+  <div 
+    class="col-sm-6"
+    *ngFor="let bond of rfqTickets"
+  >
+    <div class="card">
+      <div class="card-header">
+        <p>Sales person is: {{ bond.sales }}</p>
+        <p>client is: {{ bond.client}}</p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Trading {{ bond.product }} products</h5>
+        <p class="card-text">{{ bond.side }}: {{ bond.size }}mm for £ {{ bond.price }}</p>
+        <div class="row">
+          <div class="col-sm-3"><button class="btn btn-dark">-</button></div>
+          <div class="col-sm-6"><p>price</p></div>
+          <div class="col-sm-3"><button class="btn btn-dark">+</button></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><button class="btn btn-success">Send</button></div>
+          <div class="col-sm-6"><button class="btn btn-danger">Cancel</button></div>
+        </div>
+      </div>
+    </div> 
   </div>
-  <div id="action-buttons">
-  <button>Submit</button>
-  <button>Cancel</button>
-  </div>
-</div> -->
-
-<ul>
-  <li *ngFor="let bond of rfqTickets">
-    <p>client is {{bond.client}}</p>
-  </li>
-</ul>
+</div>
