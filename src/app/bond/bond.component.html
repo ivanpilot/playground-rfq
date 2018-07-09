@@ -1,7 +1,7 @@
 <div class="row">
   <div 
     class="col-sm-6"
-    *ngFor="let bond of rfqTickets"
+    *ngFor="let bond of (rfqTickets$ | async)"
   >
     <div class="card">
       <div class="card-header">
@@ -10,7 +10,45 @@
       </div>
       <div class="card-body">
         <h5 class="card-title">Trading {{ bond.product }} products</h5>
-        <p class="card-text">{{ bond.side }}: {{ bond.size }}mm for £ {{ bond.price }}</p>
+        <p class="card-text">
+          <span>{{ bond.side }}</span>: 
+          <span>{{ bond.size }}</span>mm for £ 
+          <span>{{ bond.price }}</span>
+        </p>
+        <div class="row">
+          <div class="col-sm-3">
+              <button class="btn btn-dark" (click)="decrease(bond)">-</button>
+          </div>
+          <div class="col-sm-6"><p>price</p></div>
+          <div class="col-sm-3">
+            <button class="btn btn-dark" (click)="increase(bond)">+</button>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6"><button class="btn btn-success">Send</button></div>
+          <div class="col-sm-6"><button class="btn btn-danger">Cancel</button></div>
+        </div>
+      </div>
+    </div> 
+  </div>
+</div>
+<!-- <div class="row">
+  <div 
+    class="col-sm-6"
+    *ngIf="(rfqTickets$ | async) as bond"
+  >
+    <div class="card">
+      <div class="card-header">
+        <p>Sales person is: {{ bond[0].sales }}</p>
+        <p>client is: {{ bond[0].client}}</p>
+      </div>
+      <div class="card-body">
+        <h5 class="card-title">Trading {{ bond[0].product }} products</h5>
+        <p class="card-text">
+          <span>{{ bond[0].side }}</span>: 
+          <span>{{ bond[0].size }}</span>mm for £ 
+          <span>{{ bond[0].price }}</span>
+        </p>
         <div class="row">
           <div class="col-sm-3"><button class="btn btn-dark">-</button></div>
           <div class="col-sm-6"><p>price</p></div>
@@ -23,4 +61,4 @@
       </div>
     </div> 
   </div>
-</div>
+</div> -->

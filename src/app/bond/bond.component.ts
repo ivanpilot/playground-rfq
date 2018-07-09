@@ -10,15 +10,21 @@ import { Observable } from 'rxjs';
 })
 export class BondComponent implements OnInit {
 
-  rfqTickets: RfqTicket[] = []
+  rfqTickets$: Observable<RfqTicket[]>
+
   constructor(private rfqTicketService: RfqTicketService){}
 
   ngOnInit(){
-    this.rfqTicketService.get()
-    .subscribe((data) => {
-      console.log('this is my log', data)
-      this.rfqTickets = data
-    })
+    this.rfqTicketService.seed()
+    this.rfqTickets$ = this.rfqTicketService.index()
+  }
+  
+  increase(bond){
+    this.rfqTicketService.update({...bond, price: bond.price + 100})
+  }
+  
+  decrease(bond){
+    this.rfqTicketService.update({...bond, price: bond.price - 100})
   }
 
 }
