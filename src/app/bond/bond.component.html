@@ -54,11 +54,31 @@
           <div class="col-sm-6"><p>price</p></div>
           <div class="col-sm-3"><button class="btn btn-dark">+</button></div>
         </div>
-        <div class="row">
-          <div class="col-sm-6"><button class="btn btn-success">Send</button></div>
-          <div class="col-sm-6"><button class="btn btn-danger">Cancel</button></div>
+        <div class="card-body">
+          <h5 class="card-title">Trading {{ bond.product }} products</h5>
+          <p class="card-text">{{ bond.side }}: {{ bond.size }}mm for £ {{ bond.price }}</p>
+          <div class="row">
+            <button 
+              class="btn btn-dark"
+              (click)="decrease()"
+            > -
+            </button>
+            <div class="col-sm-6"><p>price</p></div>
+            <div class="col-sm-3">
+              <button 
+                class="btn btn-dark"
+                (click)="increase()"
+              >
+                +
+              </button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6"><button class="btn btn-success">Send</button></div>
+            <div class="col-sm-6"><button class="btn btn-danger">Cancel</button></div>
+          </div>
         </div>
-      </div>
-    </div> 
+      </div> 
+    </div>
   </div>
 </div> -->
