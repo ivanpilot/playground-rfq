@@ -1,8 +1,13 @@
 import {Application} from 'express';
-const express = require('express');
-const bodyParser = require('body-parser');
-const fs = require('fs');
-const path = require('path');
+import * as express from 'express';
+import * as bodyParser from 'body-parser';
+import * as fs from 'fs-extra';
+import * as path from 'path';
+
+// const express = require('express');
+// const bodyParser = require('body-parser');
+// const fs = require('fs');
+// const path = require('path');
 
 const DATA_FILE = path.join(__dirname, 'data.json');
 
