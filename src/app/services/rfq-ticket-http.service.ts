@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { RfqTicket } from '../shared/model/rfq-ticket';
 import { first } from "rxjs/operators";
@@ -18,8 +18,6 @@ export class RfqTicketHttpService {
         first()
       )
   // index(){
-  //   // const headers = new Headers()
-  //   // headers.append('Content-Type', 'application/json')
   //   const result = this.http.get('/bonds')
   //     .pipe(
   //       tap(res => {
@@ -32,6 +30,17 @@ export class RfqTicketHttpService {
   //     // debugger
   //     console.log(`val is ${JSON.parse(val)}`)
   //   })
+  }
+
+  update(bond: RfqTicket){
+    const headers = new HttpHeaders()
+      .set("Content-Type", "application/json");
+
+    this.http.put<RfqTicket[]>('/bonds', bond, {headers})
+      .subscribe(
+        data => console.log('this is the result from PUT: ', data),
+        err => console.log(err)
+      )
   }
 
 }
