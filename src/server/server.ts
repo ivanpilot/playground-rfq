@@ -1,7 +1,4 @@
-// import * as express from 'express';
 import {Application} from 'express';
-// import {newsletterRoute} from "./newsletterRoute";
-// import {loginRoute} from "./loginRoute";
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -15,12 +12,7 @@ app.set('port', (process.env.PORT || 3000));
 
 app.use(bodyParser.json());
 
-
 console.log('Starting server ...');
-
-
-// app.route('/api/newsletter').post(newsletterRoute);
-// app.route('/api/login').post(loginRoute);
 
 app.use('/', express.static(path.join(__dirname, 'server')));
 app.use(bodyParser.json());
@@ -40,10 +32,6 @@ app.get('/bonds', (req, res) => {
   });
 });
 
-
-// app.listen(8090, () => {
-//     console.log('Server is now running on port 8090 ...');
-// });
 
 app.listen(app.get('port'), () => {
   console.log(`Find the server at: http://localhost:${app.get('port')}/`); // eslint-disable-line no-console
