@@ -37,25 +37,25 @@ app.get('/bonds', (req, res) => {
   });
 });
 
-app.put('/bonds', (req, res) => {
-  // debugger
-  fs.readFile(DATA_FILE, (err, data) => {
-    const bonds = JSON.parse(data)
-    const updatedBonds = bonds.map(bond => {
-      if(bond.id === req.body.id){
-        return {...bond, price: req.body.price}
-        // bond.price = req.body.price
-      }
-    })
-    fs.writeFile(DATA_FILE, JSON.stringify(updatedBonds, null, 4), () => {
-      // debugger
-      // console.log('Hey, I am a PUT action from the server')
-      res.json(JSON.parse(updatedBonds));
-    });
-    // res.json(JSON.parse(updatedBonds));
-  // )
-  });
-});
+// app.put('/bonds', (req, res) => {
+//   // debugger
+//   fs.readFile(DATA_FILE, (err, data) => {
+//     const bonds = JSON.parse(data)
+//     const updatedBonds = bonds.map(bond => {
+//       if(bond.id === req.body.id){
+//         return {...bond, price: req.body.price}
+//         // bond.price = req.body.price
+//       }
+//     })
+//     fs.writeFile(DATA_FILE, JSON.stringify(updatedBonds, null, 4), () => {
+//       // debugger
+//       // console.log('Hey, I am a PUT action from the server')
+//       res.json(JSON.parse(updatedBonds));
+//     });
+//     // res.json(JSON.parse(updatedBonds));
+//   // )
+//   });
+// });
 
 // app.put('/api/timers', (req, res) => {
 //   fs.readFile(DATA_FILE, (err, data) => {
