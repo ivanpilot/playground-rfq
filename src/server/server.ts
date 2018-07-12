@@ -2,24 +2,17 @@ import {Application} from 'express';
 import * as express from 'express';
 import * as bodyParser from 'body-parser';
 import * as fs from 'fs-extra';
-import * as path from 'path';
+// import * as path from 'path';
 
-// const express = require('express');
-// const bodyParser = require('body-parser');
-// const fs = require('fs');
-// const path = require('path');
 
-const DATA_FILE = path.join(__dirname, 'data.json');
+const DATA_FILE = '/Users/iplab/Documents/education/angular/projects/playground-rfq/src/server/data.json';
 
 const app: Application = express();
 
-app.set('port', (process.env.PORT || 3000));
-
-app.use(bodyParser.json());
+app.set('port', 3000);
 
 console.log('Starting server ...');
 
-app.use('/', express.static(path.join(__dirname, 'server')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -31,46 +24,30 @@ app.use((req, res, next) => {
 });
 
 app.get('/bonds', (req, res) => {
-  fs.readFile(DATA_FILE, (err, data) => {
+  fs.readJSON(DATA_FILE, (err, data) => {
+    // console.log(`file address is ${DATA_FILE}`)
+    // console.log(`data is ${data}`)
     res.setHeader('Cache-Control', 'no-cache');
-    res.json(JSON.parse(data));
+    res.json(data);
   });
 });
 
-// app.put('/bonds', (req, res) => {
-//   // debugger
-//   fs.readFile(DATA_FILE, (err, data) => {
-//     const bonds = JSON.parse(data)
-//     const updatedBonds = bonds.map(bond => {
-//       if(bond.id === req.body.id){
-//         return {...bond, price: req.body.price}
-//         // bond.price = req.body.price
-//       }
-//     })
-//     fs.writeFile(DATA_FILE, JSON.stringify(updatedBonds, null, 4), () => {
-//       // debugger
-//       // console.log('Hey, I am a PUT action from the server')
-//       res.json(JSON.parse(updatedBonds));
-//     });
-//     // res.json(JSON.parse(updatedBonds));
-//   // )
-//   });
-// });
-
-// app.put('/api/timers', (req, res) => {
-//   fs.readFile(DATA_FILE, (err, data) => {
-//     const timers = JSON.parse(data);
-//     timers.forEach((timer) => {
-//       if (timer.id === req.body.id) {
-//         timer.title = req.body.title;
-//         timer.project = req.body.project;
-//       }
-//     });
-//     fs.writeFile(DATA_FILE, JSON.stringify(timers, null, 4), () => {
-//       res.json({});
-//     });
-//   });
-// });
+app.put('/bonds/:id', (req, res) => {
+  fs.readJSON(DATA_FILE, (err, data) => {
+    let index = parseInt(req.params.id)
+    console.log('data are: ', data)
+    let updatedBonds = [
+      ...data.slice(0, index),
+      req.body,
+      ...data.slice(index + 1, data.length)
+    ]
+    console.log('updatedBonds are: ', updatedBonds)
+    fs.writeJSON(DATA_FILE, JSON.stringify(updatedBonds, null, 2), () => {
+      res.setHeader('Content-Type', 'application/json');
+      res.json(updatedBonds);
+    });
+  });
+});
 
 
 app.listen(app.get('port'), () => {

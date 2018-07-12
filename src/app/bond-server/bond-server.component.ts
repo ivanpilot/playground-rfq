@@ -16,6 +16,7 @@ export class BondServerComponent implements OnInit {
 
   ngOnInit() {
     this.rfqTickets$ = this.rfqTicketHttpService.index()
+    debugger
   }
   
   increase(bond){
